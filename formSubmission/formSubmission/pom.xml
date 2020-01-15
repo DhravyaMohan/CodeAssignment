@@ -51,6 +51,11 @@
 			<version>1.4.190</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.pantsbuild</groupId>
+			<artifactId>junit-runner</artifactId>
+			<version>1.0.18</version>
+		</dependency>
 	</dependencies>
 
 	<build>
