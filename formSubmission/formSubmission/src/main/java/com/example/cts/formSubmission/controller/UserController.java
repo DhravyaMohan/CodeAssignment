@@ -45,13 +45,12 @@ public class UserController {
     }
 
     //Updating an existing user
-    @PutMapping("/updateuser/{id}")
+    @PutMapping("/updateuser")
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(@PathVariable(value = "id") Long id,
-                                              @Valid @RequestBody User userDetails) {
+    public void updateUser(@Valid @RequestBody User userDetails) {
 
         LOGGER.info("UserController::UpdateUser:::");
-        userService.updateUser(id,userDetails);
+        userService.updateUser(userDetails);
 
     }
 

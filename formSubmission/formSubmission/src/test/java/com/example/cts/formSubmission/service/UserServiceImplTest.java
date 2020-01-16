@@ -74,7 +74,6 @@ public class UserServiceImplTest {
                 ResponseEntity<User> postResponse = restTemplate.postForEntity(getUrl() + "/UserManagement/users/createuser", user, User.class);
                 user=postResponse.getBody();
                 this.setId(user.getId());
-                System.out.println("id===>"+this.getId());
                 assertNotNull(postResponse);
                 assertNotNull(postResponse.getBody());
         }
@@ -91,7 +90,6 @@ public class UserServiceImplTest {
                 user.setAddress("rgbhy");
                 user.setContactNo("9876543210");
                 user.setAge(10);
-                System.out.println("getId1==>"+this.getId());
                 restTemplate.put(getUrl() + "/UserManagement/users/updateuser/" + this.getId(), user);
         }
 

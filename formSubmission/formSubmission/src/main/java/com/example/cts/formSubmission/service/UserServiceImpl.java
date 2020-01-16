@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
     }
 
     //Updating an existing user
-    public void updateUser(Long id, User userDetails) {
-        User user = findByUserId(id);
+    public void updateUser(User userDetails) {
+        User user = findByUserId(userDetails.getId());
         try {
             userRepository.save(populateUser(userDetails, user));
         } catch (Exception e) {
