@@ -27,33 +27,31 @@ public class UserController {
     //private UserRepository userRepository;
 
     //creating a new user
+
     @PostMapping("/createuser")
     @ResponseStatus(HttpStatus.CREATED)
-    public String saveUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         LOGGER.info("UserController::CreateUser:::");
         LOGGER.debug("user json -> {}",user);
-        userService.createUser(user);
-        return "success";
+        return userService.createUser(user);
     }
 
     //deleting an existing user
     @DeleteMapping("/deleteuser/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String deleteUser(@PathVariable(value = "id") Long id) throws FileNotFoundException {
+    public void deleteUser(@PathVariable(value = "id") Long id)  {
         LOGGER.info("UserController::deleteUser:::");
         userService.deleteUser(id);
-
-        return "deleted";
-
     }
 
     //Updating an existing user
     @PutMapping("/updateuser/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity < User > updateUser(@PathVariable(value = "id") Long id,
-                                              @Valid @RequestBody User userDetails) throws FileNotFoundException {
+    public void updateUser(@PathVariable(value = "id") Long id,
+                                              @Valid @RequestBody User userDetails) {
 
-        return userService.updateUser(id,userDetails);
+        LOGGER.info("UserController::UpdateUser:::");
+        userService.updateUser(id,userDetails);
 
     }
 
@@ -61,19 +59,11 @@ public class UserController {
     @GetMapping("/getallusers")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<User>> getAllUsers() {
+        LOGGER.info("UserController::GetAllUser:::");
         List<User> list = userService.readAllUser();
 
         return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
     }
-
-    //getting user information by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getEmployeeById(@PathVariable("id") Long id)
-//            throws FileNotFoundException {
-//        User user = userService.getUserById(id);
-//
-//        return new ResponseEntity<User>(user, new HttpHeaders(), HttpStatus.OK);
-//    }
 
 
 }
