@@ -115,8 +115,6 @@ public class UserServiceImplTest {
         ResponseEntity<String> response = restTemplate.exchange(getUrl() + "/userManagement/users/deleteuser/" + this.getId(), HttpMethod.DELETE, entity, String.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-
-
     }
 
   }
