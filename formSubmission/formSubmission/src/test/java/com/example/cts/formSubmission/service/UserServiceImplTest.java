@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
@@ -58,7 +55,6 @@ public class UserServiceImplTest {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         String getResponse = restTemplate.getForObject(getUrl() + "/userManagement/users/getallusers", String.class);
-        System.out.println("getResponse===>" + getResponse);
         assertNotNull(getResponse);
     }
 
@@ -85,7 +81,7 @@ public class UserServiceImplTest {
     @Test
     @Order(3)
     public void testUpdateUser() {
-
+        System.out.println("getId1==>" + this.getId());
         User user = new User();
         user.setFirstName("abcd");
         user.setLastName("abcd");
@@ -93,18 +89,33 @@ public class UserServiceImplTest {
         user.setAddress("rgbhy");
         user.setContactNo("9876543210");
         user.setAge(10);
-        restTemplate.put(getUrl() + "/userManagement/users/updateuser/", user);
+        user.setId(this.getId());
+        HttpEntity<User> entity = new HttpEntity<>(user, new HttpHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(getUrl() + "/userManagement/users/updateuser", HttpMethod.PUT, entity, String.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     @Order(4)
     public void testDeleteUser() {
-        try {
-            System.out.println("getId2==>" + this.getId());
-            restTemplate.delete(getUrl() + "/userManagement/users/deleteuser/" + this.getId());
-        } catch (final HttpClientErrorException e) {
-            assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
-        }
+
+            HttpEntity<String> entity = new HttpEntity<>(null, new HttpHeaders());
+            ResponseEntity<String> response = restTemplate.exchange(getUrl() + "/userManagement/users/deleteuser/" + this.getId(), HttpMethod.DELETE, entity, String.class);
+
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+
+
+    }
+
+    @Test
+    @Order(5)
+    public void testExceptionThrown() {
+        HttpEntity<String> entity = new HttpEntity<>(null, new HttpHeaders());
+        ResponseEntity<String> response = restTemplate.exchange(getUrl() + "/userManagement/users/deleteuser/" + this.getId(), HttpMethod.DELETE, entity, String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+
 
     }
 
