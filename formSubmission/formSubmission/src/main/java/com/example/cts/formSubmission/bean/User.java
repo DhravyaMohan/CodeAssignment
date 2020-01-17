@@ -1,4 +1,4 @@
-package com.example.cts.formSubmission.bean;
+package com.example.cts.formsubmission.bean;
 
 import javax.persistence.*;
 

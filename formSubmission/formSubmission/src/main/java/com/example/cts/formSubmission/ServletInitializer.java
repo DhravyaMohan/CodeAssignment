@@ -1,4 +1,4 @@
-package com.example.cts.formSubmission;
+package com.example.cts.formsubmission;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

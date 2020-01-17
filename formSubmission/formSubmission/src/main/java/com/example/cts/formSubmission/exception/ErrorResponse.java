@@ -1,4 +1,4 @@
-package com.example.cts.formSubmission.exception;
+package com.example.cts.formsubmission.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -10,6 +10,7 @@ public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;
     private String error;
+    private String details;
 
     public String getDetails() {
         return details;
@@ -19,7 +20,7 @@ public class ErrorResponse {
         this.details = details;
     }
 
-    private String details;
+
 
     public LocalDateTime getTimestamp() {
         return timestamp;

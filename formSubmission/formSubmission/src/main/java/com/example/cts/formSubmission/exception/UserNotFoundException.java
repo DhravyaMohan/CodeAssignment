@@ -1,4 +1,4 @@
-package com.example.cts.formSubmission.exception;
+package com.example.cts.formsubmission.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -10,7 +10,7 @@ public class UserNotFoundException extends RuntimeException{
         super(message);
     }
 
-    public UserNotFoundException(String message,Throwable e) {
-        super(message,e);
+    public UserNotFoundException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

@@ -1,11 +1,11 @@
-package com.example.cts.formSubmission.exception;
+package com.example.cts.formsubmission.exception;
 
 public class UserManagementException extends RuntimeException {
     public UserManagementException(String message) {
         super(message);
     }
 
-    public UserManagementException(String message,Throwable e) {
-        super(message,e);
+    public UserManagementException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

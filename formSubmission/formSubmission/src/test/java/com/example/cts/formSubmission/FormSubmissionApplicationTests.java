@@ -1,4 +1,4 @@
-package com.example.cts.formSubmission;
+package com.example.cts.formsubmission;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

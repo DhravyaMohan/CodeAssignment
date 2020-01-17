@@ -1,14 +1,9 @@
-package com.example.cts.formSubmission.service;
+package com.example.cts.formsubmission.service;
 
-import com.example.cts.formSubmission.bean.User;
-import com.example.cts.formSubmission.exception.UserListNotFoundException;
-import com.example.cts.formSubmission.exception.UserManagementException;
-import com.example.cts.formSubmission.exception.UserNotFoundException;
+import com.example.cts.formsubmission.bean.User;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public interface UserService {

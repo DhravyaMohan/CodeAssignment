@@ -1,21 +1,15 @@
-package com.example.cts.formSubmission.service;
+package com.example.cts.formsubmission.service;
 
-import com.example.cts.formSubmission.bean.User;
-import com.example.cts.formSubmission.exception.UserListNotFoundException;
-import com.example.cts.formSubmission.exception.UserManagementException;
-import com.example.cts.formSubmission.exception.UserNotFoundException;
-import com.example.cts.formSubmission.repository.UserRepository;
+import com.example.cts.formsubmission.bean.User;
+import com.example.cts.formsubmission.exception.UserManagementException;
+import com.example.cts.formsubmission.exception.UserNotFoundException;
+import com.example.cts.formsubmission.repository.UserRepository;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -28,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     //creating a new user
     public User createUser(User user) {
-        logger.info("UserService::createUser:::");
+        logger.debug("UserService::createUser:::");
         try {
             return userRepository.save(user);
         } catch (Exception e) {
@@ -38,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     //deleting an existing user
     public void deleteUser(Long id) {
-        logger.info("UserService::deleteUser:::");
+        logger.debug("UserService::deleteUser:::");
         User user = findByUserId(id);
         userRepository.delete(user);
 
@@ -46,18 +40,19 @@ public class UserServiceImpl implements UserService {
 
     //getting all users
     public List<User> readAllUser() {
-        logger.info("UserService::readUser:::");
+        logger.debug("UserService::readUser:::");
         List<User> user = userRepository.findAll();
 
         if (!user.isEmpty()) {
             return user;
         }
 
-        throw new UserListNotFoundException("No Users Found");
+        throw new UserNotFoundException("No Users Found");
     }
 
     //Updating an existing user
     public void updateUser(User userDetails) {
+        logger.debug("UserService::updateUser:::");
         User user = findByUserId(userDetails.getId());
         try {
             userRepository.save(populateUser(userDetails, user));

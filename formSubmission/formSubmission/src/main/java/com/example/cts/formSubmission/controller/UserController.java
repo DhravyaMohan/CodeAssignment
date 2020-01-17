@@ -1,11 +1,10 @@
-package com.example.cts.formSubmission.controller;
+package com.example.cts.formsubmission.controller;
 
-import com.example.cts.formSubmission.bean.User;
-import com.example.cts.formSubmission.service.UserServiceImpl;
+import com.example.cts.formsubmission.bean.User;
+import com.example.cts.formsubmission.service.UserServiceImpl;
 
 import javax.validation.Valid;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,15 +23,12 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
-    //private UserRepository userRepository;
 
     //creating a new user
-
     @PostMapping("/createuser")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@Valid @RequestBody User user) {
         LOGGER.info("UserController::CreateUser:::");
-        LOGGER.debug("user json -> {}",user);
         return userService.createUser(user);
     }
 
